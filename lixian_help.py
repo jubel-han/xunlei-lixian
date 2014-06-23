@@ -1,24 +1,25 @@
-
 basic_commands = [
- ('help',       "try this help..."),
- ('login',      "login Xunlei cloud"),
- ('download',   "download tasks from Xunlei cloud"),
- ('list',       "list tasks on Xunlei cloud"),
- ('add',        "add tasks to Xunlei cloud"),
- ('delete',     "delete tasks from Xunlei cloud"),
- ('pause',      "pause tasks on Xunlei cloud"),
- ('restart',    "restart tasks on Xunlei cloud"),
- ('rename',     "rename task"),
- ('readd',      "re-add tasks"),
- ('config',     "save configuration so you don't have to repeat it"),
- ('info',       "print user id, internal user id, and gdriveid"),
- ('logout',     "logout from Xunlei cloud"),
+    ('help', "try this help..."),
+    ('login', "login Xunlei cloud"),
+    ('download', "download tasks from Xunlei cloud"),
+    ('list', "list tasks on Xunlei cloud"),
+    ('add', "add tasks to Xunlei cloud"),
+    ('delete', "delete tasks from Xunlei cloud"),
+    ('pause', "pause tasks on Xunlei cloud"),
+    ('restart', "restart tasks on Xunlei cloud"),
+    ('rename', "rename task"),
+    ('readd', "re-add tasks"),
+    ('config', "save configuration so you don't have to repeat it"),
+    ('info', "print user id, internal user id, and gdriveid"),
+    ('logout', "logout from Xunlei cloud"),
 ]
 
+
 def join_commands(commands):
-	n = max(len(x[0]) for x in commands)
-	n = max(n, 10)
-	return ''.join(' %%-%ds %%s\n' % n % (k, h) for (k, h) in commands)
+    n = max(len(x[0]) for x in commands)
+    n = max(n, 10)
+    return ''.join(' %%-%ds %%s\n' % n % (k, h) for (k, h) in commands)
+
 
 basic_usage = '''python lixian_cli.py <command> [<args>]
 
@@ -29,7 +30,7 @@ extended_usage = ''
 
 # lx
 def usage():
-	return basic_usage + '''
+    return basic_usage + '''
 Use 'python lixian_cli.py help' for details.
 Use 'python lixian_cli.py help <command>' for more information on a specific command.
 Check https://github.com/iambus/xunlei-lixian for detailed (and Chinese) doc.'''
@@ -49,13 +50,14 @@ help = help_help
 # lx help
 # lx -h
 def welcome_help():
-	return '''Python script for Xunlei cloud.
+    return '''Python script for Xunlei cloud.
 
 Basic usage:
 ''' + basic_usage + extended_usage + '\n' + help_help
 
+
 def examples():
-	return '''python lixian_cli.py login "Your Xunlei account" "Your password"
+    return '''python lixian_cli.py login "Your Xunlei account" "Your password"
 python lixian_cli.py login "Your password"
 python lixian_cli.py login
 
@@ -112,15 +114,17 @@ python lixian_cli.py logout
 Please check https://github.com/iambus/xunlei-lixian for detailed (and Chinese) doc.
 '''
 
+
 def readme():
-	import sys
-	import os.path
-	doc = os.path.join(sys.path[0], 'README.md')
-	with open(doc) as txt:
-		return txt.read().decode('utf-8')
+    import sys
+    import os.path
+
+    doc = os.path.join(sys.path[0], 'README.md')
+    with open(doc) as txt:
+        return txt.read().decode('utf-8')
 
 
-login    = '''python lixian_cli.py login <username> <password>
+login = '''python lixian_cli.py login <username> <password>
 
 login Xunlei cloud
 
@@ -178,7 +182,7 @@ Examples:
  python lixian_cli.py download 0-2
 '''
 
-list     = '''python lixian_cli.py list
+list = '''python lixian_cli.py list
 
 list tasks on Xunlei cloud
 
@@ -212,7 +216,7 @@ Examples:
  python lixian_cli.py list 2012.04.04 2012.04.05
 '''
 
-add      = '''python lixian_cli.py add [options] url...
+add = '''python lixian_cli.py add [options] url...
 
 add tasks to Xunlei cloud
 
@@ -228,7 +232,7 @@ Examples:
  python lixian_cli.py add --bt http://xxx/xxx.torrent
 '''
 
-delete   = '''python lixian_cli.py delete [options] [id|url|filename|keyword|date]...
+delete = '''python lixian_cli.py delete [options] [id|url|filename|keyword|date]...
 
 delete tasks from Xunlei cloud
 
@@ -242,7 +246,7 @@ Examples:
  python lixian_cli.py delete file-name-on-cloud-to-delete
 '''
 
-pause    = '''python lixian_cli.py pause [options] [id|url|filename|keyword|date]...
+pause = '''python lixian_cli.py pause [options] [id|url|filename|keyword|date]...
 
 pause tasks on Xunlei cloud
 
@@ -251,7 +255,7 @@ Options:
  --all  pause all tasks if there are multiple matches
 '''
 
-restart  = '''python lixian_cli.py restart [id|url|filename|keyword|date]...
+restart = '''python lixian_cli.py restart [id|url|filename|keyword|date]...
 
 restart tasks on Xunlei cloud
 
@@ -260,12 +264,12 @@ Options:
  --all  restart all tasks if there are multiple matches
 '''
 
-rename   = '''python lixian_cli.py rename task-id task-name
+rename = '''python lixian_cli.py rename task-id task-name
 
 rename task
 '''
 
-readd   = '''python lixian_cli.py readd [--deleted|--expired] task-id...
+readd = '''python lixian_cli.py readd [--deleted|--expired] task-id...
 
 re-add deleted/expired tasks
 
@@ -274,7 +278,7 @@ Options:
  --expired  re-add expired tasks
 '''
 
-config   = '''python lixian_cli.py config key [value]
+config = '''python lixian_cli.py config key [value]
 
 save configuration so you don't have to repeat it
 
@@ -284,7 +288,7 @@ Examples:
  python lixian_cli.py config continue
 '''
 
-info     = '''python lixian_cli.py info
+info = '''python lixian_cli.py info
 
 print user id, internal user id, and gdriveid
 
@@ -292,7 +296,7 @@ Options:
  --id    -i  print user id only
 '''
 
-logout   = '''python lixian_cli.py logout
+logout = '''python lixian_cli.py logout
 
 logout from Xunlei cloud
 '''
